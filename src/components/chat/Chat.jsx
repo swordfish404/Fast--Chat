@@ -18,6 +18,8 @@ const Chat = () => {
 */
   return (
     <div className='chat'>Chat
+
+    {/* Top section starts here */}
       <div className="top">
         <div className="user">
             <img src="./avatar.png" alt="" />
@@ -32,7 +34,45 @@ const Chat = () => {
             <img src="./info.png" alt="" />
         </div>
       </div>
-      <div className="center"></div>
+
+      {/* Center / main chat section starts here */}
+      <div className="center">
+         <div className="message own">
+          {/* <img src="./avatar.png" alt="" /> */}
+          <div className="texts">
+           <p>The Quick Brown Fox Jumps over the lazy dog</p>
+           <span>1 min ago</span>
+           </div>
+         </div>
+
+         <div className="message">
+          <img src="./avatar.png" alt="" />
+          <div className="texts">
+           <p>The Quick Brown Fox Jumps over the lazy dog</p>
+           <span>1 min ago</span>
+           </div>
+         </div>
+
+         <div className="message own">
+          {/* <img src="./avatar.png" alt="" /> */}
+          <div className="texts">
+            <img src="https://c8.alamy.com/comp/2H1D1Y8/spiderman-power-illustration-posing-hero-editorial-2H1D1Y8.jpg" alt="" />
+           <p>The Quick Brown Fox Jumps over the lazy dog</p>
+           <span>1 min ago</span>
+           </div>
+         </div>
+
+         <div className="message">
+          <img src="./avatar.png" alt="" />
+          <div className="texts">
+           <p>The Quick Brown Fox Jumps over the lazy dog</p>
+           <span>1 min ago</span>
+           </div>
+         </div>
+      </div>
+
+
+      {/* Bottom section starts here */}
       <div className="bottom">
         <div className="icons">
             <img src="./img.png" alt="" />
@@ -46,6 +86,8 @@ const Chat = () => {
             <img src="./emoji.png" alt="" 
             onClick={()=>setOpen(prev=>!prev)}
             />
+
+            {/* Displaying the Emoji Picker */}
             <div className="picker">
             <EmojiPicker open={open} onEmojiClick={handleEmoji}/>
             </div>
