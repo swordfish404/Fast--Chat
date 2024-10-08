@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./chat.css";
 import EmojiPicker from "emoji-picker-react";
 const Chat = () => {
@@ -6,6 +6,13 @@ const Chat = () => {
    // using use state hook for the emoji button
    const [open,setOpen]=useState(false);
    const[text,setText]=useState("");
+  
+   // for auto scrolling to the end
+   const endRef=useRef(null)
+
+   useEffect(()=>{
+     endRef.current?.scrollIntoView({behavior:"smooth"});
+   },[])
 
 
    const handleEmoji= (e)=>{
@@ -69,6 +76,9 @@ const Chat = () => {
            <span>1 min ago</span>
            </div>
          </div>
+
+         {/* using useRef hook for auto scrolling to the end of the message */}
+         <div ref={endRef}></div>
       </div>
 
 
