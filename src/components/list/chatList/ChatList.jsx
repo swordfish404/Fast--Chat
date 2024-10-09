@@ -1,5 +1,6 @@
 import { useState } from "react"
 import "./chatList.css"
+import AddUser from "./addUser/addUser";
 const ChatList = () => {
 
 //   using usestate hook for change the "+" to "-" for searching   
@@ -44,7 +45,7 @@ const ChatList = () => {
               <p>Hello</p>
            </div>
        </div>
-     
+      {addMode && <AddUser/>}
     </div>
   );
 }
