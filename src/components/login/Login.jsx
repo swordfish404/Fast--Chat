@@ -25,7 +25,7 @@ const Login = () => {
         url:URL.createObjectURL(e.target.files[0])
     })
      }
-   }
+   };
 
 
    // for the warning notification using react-toastify
