@@ -3,11 +3,9 @@ import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
-// Debugging: Log the API Key to ensure it's set correctly
-console.log("API Key: ", import.meta.env.VITE_API_KEY); // Remove this line for production use
-
+// Hardcoded Firebase Configuration
 const firebaseConfig = {
-    apiKey: import.meta.env.VITE_API_KEY,
+    apiKey: "AIzaSyBUjos0Kh52Mt6CSMzClhAtKN-_IWWDUm8", // Hardcoded API key
     authDomain: "fast-chat-a47e0.firebaseapp.com",
     projectId: "fast-chat-a47e0",
     storageBucket: "fast-chat-a47e0.appspot.com",
