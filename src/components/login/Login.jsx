@@ -7,7 +7,6 @@ import { doc, setDoc } from "firebase/firestore";
 import upload from "../../lib/upload";
 
 const Login = () => {
-  // useState hook to manage avatar upload and URL
   const [avatar, setAvatar] = useState({
     file: null,
     url: "",
@@ -53,6 +52,9 @@ const Login = () => {
       });
 
       toast.success("Account Created!");
+
+      // Redirect after successful registration
+      window.location.href = "/home"; // Change "/home" to the desired path
     } catch (err) {
       console.log(err);
       toast.error(err.message);
@@ -71,6 +73,9 @@ const Login = () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       toast.success("Login successful!");
+
+      // Redirect after successful login
+      window.location.href = "/home"; // Change "/home" to the desired path
     } catch (err) {
       console.log(err);
       toast.error(err.message);
