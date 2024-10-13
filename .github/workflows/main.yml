@@ -10,6 +10,10 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v3 # Updated to v3
+      - name: Set up Node.js 20
+        uses: actions/setup-node@v3 # Specify Node.js version
+        with:
+          node-version: "20" # Use Node.js 20 explicitly
       - name: Install Dependencies
         run: npm install
       - name: Build
