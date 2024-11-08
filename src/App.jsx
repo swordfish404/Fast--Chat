@@ -10,41 +10,42 @@ import { useUserStore } from "./lib/userStore";
 import { useChatStore } from "./lib/chatStore";
 
 const App = () => {
-   
+
   //  const user=false;
-  const {currentUser,isLoading,fetchUserInfo}=useUserStore();
-  const {chatId}=useChatStore();
+  const { currentUser, isLoading, fetchUserInfo } = useUserStore();
+  const { chatId } = useChatStore();
 
-   useEffect(()=>{
-       const unSub = onAuthStateChanged(auth,(user)=>{
-        fetchUserInfo(user?.uid);
-       })
+  useEffect(() => {
+    // it is authentication listner which return call back if authentiation state changes
+    const unSub = onAuthStateChanged(auth, (user) => {
+      fetchUserInfo(user?.uid);
+    })
 
-       return () =>{
-        unSub();
-       };
-   },[fetchUserInfo]);
+    return () => {
+      unSub();
+    };
+  }, [fetchUserInfo]);
 
   //  console.log(currentUser);
 
- if(isLoading) return <div className="loading">Loading...</div>
+  if (isLoading) return <div className="loading">Loading...</div>
 
 
   return (
     <div className='container'>
-    {/* there will be three components lets write---
-     chat, list, detail */} 
-     {
-      currentUser? (  
-    <>          
-    <List/>
-    {chatId && <Chat/>}
-    {chatId && <Detail/>}
-      </> 
-    ) : (<Login/>)
-   }
+      {/* there will be three components lets write---
+     chat, list, detail */}
+      {
+        currentUser ? (
+          <>
+            <List />
+            {chatId && <Chat />}
+            {chatId && <Detail />}
+          </>
+        ) : (<Login />)
+      }
 
-   <Notification/>
+      <Notification />
     </div>
   )
 }

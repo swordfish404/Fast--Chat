@@ -6,32 +6,42 @@
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 
-body{
-  background-image:url("/background.jpg") ;
-  /* align-content: center; 
-  works the same */
+body {
   
-  /* make the div into center  */
+  /* background-image:url("https://c4.wallpaperflare.com/wallpaper/410/59/609/tv-rick-sanchez-morty-smith-rick-and-morty-wallpaper-preview.jpg"); */
+
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100vh;
   color: white;
+  position: relative; /* Ensure body can hold absolute elements */
+  overflow: hidden; /* Prevent overflow from the video */
 }
 
-.container{
+#background-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1; /* Video stays behind the content */
+}
+
+.container {
   width: 90vw;
   height: 90vh;
   background-color: rgba(18, 18, 19, 0);
   backdrop-filter: blur(19px) saturate(200%);
   border-radius: 12px;
-  border: 1px solid rgba(255,255,255,0.125);
+  border: 1px solid rgba(255, 255, 255, 0.125);
   display: flex;
 }
 
-.loading{
+.loading {
   padding: 50px;
   font-size: 36px;
   border-radius: 10px;
-  background-color: rgba(17,25,40,0.9);
+  background-color: rgba(17, 25, 40, 0.9);
 }

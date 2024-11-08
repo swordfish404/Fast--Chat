@@ -7,10 +7,13 @@ import { doc, setDoc } from "firebase/firestore";
 import upload from "../../lib/upload";
 
 const Login = () => {
+
+  // For the Avatar Image
   const [avatar, setAvatar] = useState({
     file: null,
     url: "",
   });
+
 
   const [loading, setLoading] = useState(false);
 
@@ -23,35 +26,51 @@ const Login = () => {
     }
   };
 
+
+
+
+
+
+  // Registering
   // Function for creating a new user with Firebase authentication
   const handleRegister = async (e) => {
     e.preventDefault();
     setLoading(true);
+
+    // FormData is object which bundles up data which will be sent to the server
+    // saved as key , value pair
     const formData = new FormData(e.target);
 
     const { username, email, password } = Object.fromEntries(formData);
 
+    // creating a new user
     try {
+      // creates new user record in firbase authentication system
       const res = await createUserWithEmailAndPassword(auth, email, password);
 
+
+      // For Uploading avatar image in firebase storage
+      // it is await coz firebase storage returns the url of the image takes time  
       let imgUrl = "";
       if (avatar.file) {
         imgUrl = await upload(avatar.file);
       }
 
+      // storing user information in firestore database 
       await setDoc(doc(db, "users", res.user.uid), {
         username,
         email,
-        avatar: imgUrl,
+        avatar: imgUrl, // imgUrl will be stored in firestore database
         id: res.user.uid,
         blocked: [],
       });
 
+      // for new user after registration the chats will be empty  
       await setDoc(doc(db, "userchats", res.user.uid), {
         chats: [],
       });
 
-      toast.success("Account Created!");
+      toast.success("Account Created! You Can Login Now.");
 
       // Redirect after successful registration
       window.location.href = "/home"; // Change "/home" to the desired path
@@ -62,6 +81,12 @@ const Login = () => {
       setLoading(false);
     }
   };
+
+
+
+
+
+
 
   // Function for logging in an existing user with Firebase authentication
   const handleLogin = async (e) => {
@@ -74,7 +99,7 @@ const Login = () => {
       await signInWithEmailAndPassword(auth, email, password);
       toast.success("Login successful!");
 
-      // Redirect after successful login
+      // // Redirect after successful login
       window.location.href = "/home"; // Change "/home" to the desired path
     } catch (err) {
       console.log(err);
@@ -85,6 +110,8 @@ const Login = () => {
   };
 
   return (
+
+    // For already registered user
     <div className="login">
       <div className="item">
         <h2>Welcome Back</h2>
@@ -94,7 +121,11 @@ const Login = () => {
           <button disabled={loading}>{loading ? "Loading" : "Sign In"}</button>
         </form>
       </div>
+
+
       <div className="separator"></div>
+
+      {/* For new user registration */}
       <div className="item">
         <h2>Create an Account</h2>
         <form onSubmit={handleRegister}>

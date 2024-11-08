@@ -1,13 +1,20 @@
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/logo.jpg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Fast-Chat</title>
-  </head>
-  <body>
-    <div id="root"></div>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <video autoplay muted loop id="background-video">
+        <source src="ricky.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+    </video>
+    <div id="root" class="container">
+        <div class="loading">Loading...</div> <!-- Example loading message -->
+    </div>
     <script type="module" src="/src/main.jsx"></script>
-  </body>
+</body>
 </html>
