@@ -70,7 +70,7 @@ const Chat = () => {
   };
 
   const handleSend = async () => {
-    if (text === "") return;
+    if (text === "" || isCurrentUserBlocked || isReceiverBlocked) return; // Prevent message sending if blocked
 
     let imgUrl = null;
 
@@ -182,7 +182,6 @@ const Chat = () => {
         <div ref={endRef}></div>
       </div>
 
-
       {/* Bottom section starts here */}
       <div className="bottom">
         <div className="icons">
@@ -203,6 +202,7 @@ const Chat = () => {
           value={text}
           onChange={(e) => setText(e.target.value)}
           onKeyDown={handleKeyDown} // Handle Enter key press
+          disabled={isCurrentUserBlocked || isReceiverBlocked} // Disable input if blocked
         />
         <div className="emoji">
           <img
@@ -220,7 +220,7 @@ const Chat = () => {
         <button
           className="sendButton"
           onClick={handleSend}
-          disabled={isCurrentUserBlocked || isReceiverBlocked}
+          disabled={isCurrentUserBlocked || isReceiverBlocked} // Disable send button if blocked
         >
           Send
         </button>
