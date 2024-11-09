@@ -7,13 +7,11 @@ import { doc, setDoc } from "firebase/firestore";
 import upload from "../../lib/upload";
 
 const Login = () => {
-
   // For the Avatar Image
   const [avatar, setAvatar] = useState({
     file: null,
     url: "",
   });
-
 
   const [loading, setLoading] = useState(false);
 
@@ -26,11 +24,6 @@ const Login = () => {
     }
   };
 
-
-
-
-
-
   // Registering
   // Function for creating a new user with Firebase authentication
   const handleRegister = async (e) => {
@@ -40,14 +33,12 @@ const Login = () => {
     // FormData is object which bundles up data which will be sent to the server
     // saved as key , value pair
     const formData = new FormData(e.target);
-
     const { username, email, password } = Object.fromEntries(formData);
 
     // creating a new user
     try {
-      // creates new user record in firbase authentication system
+      // creates new user record in firebase authentication system
       const res = await createUserWithEmailAndPassword(auth, email, password);
-
 
       // For Uploading avatar image in firebase storage
       // it is await coz firebase storage returns the url of the image takes time  
@@ -72,8 +63,8 @@ const Login = () => {
 
       toast.success("Account Created! You Can Login Now.");
 
-      // Redirect after successful registration
-      window.location.href = "/home"; // Change "/home" to the desired path
+      // Redirect to root ("/") after successful registration
+      window.location.assign("/");
     } catch (err) {
       console.log(err);
       toast.error(err.message);
@@ -82,25 +73,19 @@ const Login = () => {
     }
   };
 
-
-
-
-
-
-
   // Function for logging in an existing user with Firebase authentication
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
     const formData = new FormData(e.target);
-
     const { email, password } = Object.fromEntries(formData);
+
     try {
       await signInWithEmailAndPassword(auth, email, password);
       toast.success("Login successful!");
 
-      // // Redirect after successful login
-      window.location.href = "/home"; // Change "/home" to the desired path
+      // Redirect to root ("/") after successful login
+      window.location.assign("/");
     } catch (err) {
       console.log(err);
       toast.error(err.message);
@@ -110,7 +95,6 @@ const Login = () => {
   };
 
   return (
-
     // For already registered user
     <div className="login">
       <div className="item">
@@ -121,7 +105,6 @@ const Login = () => {
           <button disabled={loading}>{loading ? "Loading" : "Sign In"}</button>
         </form>
       </div>
-
 
       <div className="separator"></div>
 
